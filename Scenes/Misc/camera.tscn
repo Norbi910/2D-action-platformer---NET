@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://qh4krg2nlrhg"]
+
+[ext_resource type="Script" uid="uid://dbu0rmf8p3xfl" path="res://Scripts/Misc/camera.gd" id="1_w1pu4"]
+
+[node name="Camera" type="Camera2D"]
+zoom = Vector2(0.85, 0.85)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.05
+drag_top_margin = 0.05
+drag_right_margin = 0.05
+drag_bottom_margin = 0.05
+script = ExtResource("1_w1pu4")

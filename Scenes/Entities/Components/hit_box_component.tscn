@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://mca7y2rl04ft"]
+
+[ext_resource type="Script" uid="uid://c3cfvtwsywdr4" path="res://Scripts/Entities/Components/hit_box_component.gd" id="1_t20er"]
+
+[node name="HitBoxComponent" type="Area2D"]
+script = ExtResource("1_t20er")
+
+[node name="InvincibiltyTimer" type="Timer" parent="."]
+wait_time = 7.105
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="InvincibiltyTimer" to="." method="_on_invincibilty_timer_timeout"]

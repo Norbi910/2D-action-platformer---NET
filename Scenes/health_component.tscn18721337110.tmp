@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://bml8o3fl7yfw0"]
+
+[ext_resource type="Script" uid="uid://dbmldnmsfet74" path="res://Scripts/health_component.gd" id="1_yf5fb"]
+[ext_resource type="Script" uid="uid://2l83trm74toe" path="res://hp_bar.gd" id="2_4831x"]
+
+[node name="HealthComponent" type="Node2D"]
+script = ExtResource("1_yf5fb")
+
+[node name="HPBar" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_4831x")
+
+[node name="bg" type="ColorRect" parent="HPBar"]
+layout_mode = 0
+offset_left = -14.0
+offset_right = 14.0
+offset_bottom = 3.0
+color = Color(0, 0, 0, 1)
+
+[node name="hp" type="ColorRect" parent="HPBar"]
+layout_mode = 0
+offset_left = -14.0
+offset_right = 14.0
+offset_bottom = 3.0
+color = Color(1, 0, 0, 1)

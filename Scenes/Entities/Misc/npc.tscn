@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://c5adkl5ce2slt"]
+
+[ext_resource type="Texture2D" uid="uid://dhl2onbee0i2l" path="res://Sprites/Entities/NPCs/sunny-bunny-idle.png" id="1_acqhf"]
+[ext_resource type="Script" uid="uid://gk4ti8qnn06h" path="res://Scripts/Entities/Misc/npc.gd" id="1_xxsvc"]
+[ext_resource type="FontFile" uid="uid://c6lvcqnjf517l" path="res://Sprites/Fonts/MedodicaRegular.otf" id="3_g6unj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxsvc"]
+atlas = ExtResource("1_acqhf")
+region = Rect2(0, 0, 24, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6unj"]
+atlas = ExtResource("1_acqhf")
+region = Rect2(24, 0, 24, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1ryf"]
+atlas = ExtResource("1_acqhf")
+region = Rect2(48, 0, 24, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ig1v"]
+atlas = ExtResource("1_acqhf")
+region = Rect2(72, 0, 24, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6atyd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxsvc")
+}, {
+"duration": 2.01,
+"texture": SubResource("AtlasTexture_g6unj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1ryf")
+}, {
+"duration": 2.01,
+"texture": SubResource("AtlasTexture_1ig1v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2xkex"]
+radius = 20.024984
+
+[node name="NPC" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_xxsvc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6atyd")
+autoplay = "default"
+frame_progress = 0.37945244
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_2xkex")
+
+[node name="TextBox" type="Label" parent="."]
+z_index = 5
+offset_left = -79.0
+offset_top = -38.0
+offset_right = 79.0
+offset_bottom = -22.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_g6unj")
+text = "Hi!
+My name is bun!
+Nice to meet you!"
+horizontal_alignment = 1
+max_lines_visible = 1

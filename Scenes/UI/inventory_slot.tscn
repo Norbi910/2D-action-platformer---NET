@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwsm4t735ppqk"]
+
+[ext_resource type="Script" uid="uid://b5pwx515vqr25" path="res://Scripts/UI/inventory_slot.gd" id="1_0v82l"]
+
+[node name="InventorySlot" type="Panel"]
+custom_minimum_size = Vector2(32, 32)
+anchors_preset = -1
+anchor_right = 0.033
+anchor_bottom = 0.059000004
+offset_right = 16.16
+offset_bottom = 16.07
+script = ExtResource("1_0v82l")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0.24313726, 0.24313726, 0.24313726, 0.8352941)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
