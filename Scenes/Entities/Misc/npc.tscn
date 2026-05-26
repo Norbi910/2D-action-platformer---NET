@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c5adkl5ce2slt"]
 
 [ext_resource type="Texture2D" uid="uid://dhl2onbee0i2l" path="res://Sprites/Entities/NPCs/sunny-bunny-idle.png" id="1_acqhf"]
-[ext_resource type="Script" uid="uid://gk4ti8qnn06h" path="res://Scripts/Entities/Misc/npc.gd" id="1_xxsvc"]
+[ext_resource type="Script" uid="uid://gk4ti8qnn06h" path="res://Scripts/GDScript/Entities/Misc/npc.gd" id="1_xxsvc"]
 [ext_resource type="FontFile" uid="uid://c6lvcqnjf517l" path="res://Sprites/Fonts/MedodicaRegular.otf" id="3_g6unj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xxsvc"]

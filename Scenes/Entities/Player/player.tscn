@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://chpxkw26mvq3k"]
 
-[ext_resource type="Script" uid="uid://bscemwjnnb2is" path="res://Scripts/Entities/Player/player.gd" id="1_vgqql"]
+[ext_resource type="Script" uid="uid://djr5pppq1rnbp" path="res://Scripts/CS/Entities/Player/Player.cs" id="1_0yfgq"]
 [ext_resource type="Texture2D" uid="uid://ctr48nrwrqb7d" path="res://Sprites/Entities/Player/idle.png" id="2_fkybt"]
 [ext_resource type="Texture2D" uid="uid://wpf1586bga5w" path="res://Sprites/Entities/Player/run.png" id="3_x3wgy"]
 [ext_resource type="Texture2D" uid="uid://d0g15y676v3xf" path="res://Sprites/Entities/Player/jump.png" id="4_3smsa"]
@@ -498,7 +498,7 @@ fill_to = Vector2(0.83760685, 0.7991453)
 [node name="Player" type="CharacterBody2D" unique_id=307831011]
 collision_layer = 0
 floor_constant_speed = true
-script = ExtResource("1_vgqql")
+script = ExtResource("1_0yfgq")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=1846072109]
 visible = false

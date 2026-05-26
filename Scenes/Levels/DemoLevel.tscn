@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://0y7b0t310ya6"]
 
-[ext_resource type="Script" uid="uid://cnastewmr22ut" path="res://Scripts/Misc/demo_level.gd" id="1_daumt"]
+[ext_resource type="Script" uid="uid://cnastewmr22ut" path="res://Scripts/GDScript/Misc/demo_level.gd" id="1_daumt"]
 [ext_resource type="Texture2D" uid="uid://bmtekvskkcf5i" path="res://Sprites/BackGround/sky.png" id="1_y27js"]
 [ext_resource type="Texture2D" uid="uid://dxorqnwdr6kwv" path="res://Sprites/BackGround/clouds.png" id="2_yupnh"]
 [ext_resource type="Texture2D" uid="uid://div67s55nkb60" path="res://Sprites/BackGround/trees.png" id="3_ydaot"]
@@ -15,12 +15,12 @@
 [ext_resource type="PackedScene" uid="uid://c7qmlwx2rua4s" path="res://Scenes/Misc/star.tscn" id="10_ydaot"]
 [ext_resource type="FontFile" uid="uid://c6lvcqnjf517l" path="res://Sprites/Fonts/MedodicaRegular.otf" id="10_yupnh"]
 [ext_resource type="PackedScene" uid="uid://c0xujnhdedwic" path="res://Scenes/Entities/Enemy/Boss/boss.tscn" id="12_mv8t7"]
-[ext_resource type="Script" uid="uid://djlgois0kuta2" path="res://Scripts/Entities/Enemy/Boss/attack.gd" id="12_uha3m"]
+[ext_resource type="Script" uid="uid://djlgois0kuta2" path="res://Scripts/GDScript/Entities/Enemy/Boss/attack.gd" id="12_uha3m"]
 [ext_resource type="Resource" uid="uid://dcp6thd2q0crk" path="res://Resources/Boss/Attacks/uproot.tres" id="13_har8n"]
 [ext_resource type="Resource" uid="uid://gcq220mgqsed" path="res://Resources/Boss/Attacks/slam_Attack.tres" id="14_jxryy"]
 [ext_resource type="Resource" uid="uid://dcmmki52158lx" path="res://Resources/Boss/Attacks/burrow.tres" id="15_1fxyu"]
 [ext_resource type="Resource" uid="uid://dajg0yam1uujx" path="res://Resources/Boss/Attacks/bite_attack.tres" id="16_bujq5"]
-[ext_resource type="Script" uid="uid://v1cqrhhvx3ff" path="res://Scripts/Entities/Enemy/Boss/boss_resource.gd" id="17_cyn6n"]
+[ext_resource type="Script" uid="uid://v1cqrhhvx3ff" path="res://Scripts/GDScript/Entities/Enemy/Boss/boss_resource.gd" id="17_cyn6n"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_bo1nx"]
 tile_data = PackedInt32Array(0, 1310720, 4, 65536, 1310720, 5)

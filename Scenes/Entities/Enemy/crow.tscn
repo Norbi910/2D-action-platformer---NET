@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bs1jsgcfbqxsd"]
 
-[ext_resource type="Script" uid="uid://dc262svgjrkrm" path="res://Scripts/Entities/Enemy/crow.gd" id="1_c25kj"]
+[ext_resource type="Script" uid="uid://dc262svgjrkrm" path="res://Scripts/GDScript/Entities/Enemy/crow.gd" id="1_c25kj"]
 [ext_resource type="PackedScene" uid="uid://cf4duabfcn6fa" path="res://Scenes/Entities/Components/hit_flash_component.tscn" id="1_lou7a"]
 [ext_resource type="PackedScene" uid="uid://bml8o3fl7yfw0" path="res://Scenes/Entities/Components/health_component.tscn" id="2_chaky"]
 [ext_resource type="PackedScene" uid="uid://cdnmaw550r223" path="res://Scenes/UI/hp_bar.tscn" id="3_c25kj"]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cf4duabfcn6fa"]
 
-[ext_resource type="Script" uid="uid://dhsidn57865q0" path="res://Scripts/Entities/Components/hit_flash_component.gd" id="1_i7b4d"]
+[ext_resource type="Script" uid="uid://dhsidn57865q0" path="res://Scripts/GDScript/Entities/Components/hit_flash_component.gd" id="1_i7b4d"]
 
 [sub_resource type="Animation" id="Animation_4u2o6"]
 length = 0.001

@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdnmaw550r223"]
+[gd_scene format=3 uid="uid://cdnmaw550r223"]
 
-[ext_resource type="Script" uid="uid://2l83trm74toe" path="res://Scripts/UI/hp_bar.gd" id="1_7yw3h"]
+[ext_resource type="Script" uid="uid://2l83trm74toe" path="res://Scripts/GDScript/UI/hp_bar.gd" id="1_7yw3h"]
 
 [node name="HPBar" type="Control"]
 layout_mode = 3

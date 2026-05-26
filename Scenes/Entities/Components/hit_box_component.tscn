@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://mca7y2rl04ft"]
 
-[ext_resource type="Script" uid="uid://c3cfvtwsywdr4" path="res://Scripts/Entities/Components/hit_box_component.gd" id="1_t20er"]
+[ext_resource type="Script" uid="uid://bmsg2snkrq1yq" path="res://Scripts/CS/Entities/Components/HitBoxComponent.cs" id="1_iiqry"]
 
-[node name="HitBoxComponent" type="Area2D"]
-script = ExtResource("1_t20er")
+[node name="HitBoxComponent" type="Area2D" unique_id=2097671261]
+script = ExtResource("1_iiqry")
 
-[node name="InvincibiltyTimer" type="Timer" parent="."]
+[node name="InvincibiltyTimer" type="Timer" parent="." unique_id=689950276]
+unique_name_in_owner = true
 wait_time = 7.105
 one_shot = true
 

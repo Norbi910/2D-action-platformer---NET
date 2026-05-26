@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bb8nlyevsjr62"]
 
-[ext_resource type="Script" uid="uid://cih88vv0ljwib" path="res://Scripts/Entities/Components/attack_component.gd" id="1_sn2ne"]
+[ext_resource type="Script" uid="uid://dd6hduj7hm1iu" path="res://Scripts/CS/Entities/Components/AttackComponent.cs" id="1_2eaj2"]
 
-[node name="AttackComponent" type="Area2D"]
-script = ExtResource("1_sn2ne")
+[node name="AttackComponent" type="Area2D" unique_id=551622795]
+script = ExtResource("1_2eaj2")

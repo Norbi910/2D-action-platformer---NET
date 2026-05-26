@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://c0xujnhdedwic"]
 
-[ext_resource type="Script" uid="uid://y1mnlqiwkhba" path="res://Scripts/Entities/Enemy/Boss/boss.gd" id="1_88chn"]
+[ext_resource type="Script" uid="uid://y1mnlqiwkhba" path="res://Scripts/GDScript/Entities/Enemy/Boss/boss.gd" id="1_88chn"]
 [ext_resource type="Texture2D" uid="uid://bn6pyoxf2gdl6" path="res://Sprites/Entities/Enemies/Boss/boss.png" id="2_e30ix"]
 [ext_resource type="PackedScene" uid="uid://bml8o3fl7yfw0" path="res://Scenes/Entities/Components/health_component.tscn" id="2_mci1o"]
 [ext_resource type="PackedScene" uid="uid://mca7y2rl04ft" path="res://Scenes/Entities/Components/hit_box_component.tscn" id="3_gbfcn"]
 [ext_resource type="PackedScene" uid="uid://cdnmaw550r223" path="res://Scenes/UI/hp_bar.tscn" id="4_gbfcn"]
 [ext_resource type="Texture2D" uid="uid://coagglfkuhbns" path="res://Sprites/Entities/Enemies/Boss/611927-walter-hammer-set-4-tlg-09.webp" id="6_e30ix"]
-[ext_resource type="Script" uid="uid://cih88vv0ljwib" path="res://Scripts/Entities/Components/attack_component.gd" id="9_06ur4"]
+[ext_resource type="Script" uid="uid://cih88vv0ljwib" path="res://Scripts/GDScript/Entities/Components/attack_component.gd" id="9_06ur4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u6nay"]
 radius = 23.0
@@ -296,7 +296,6 @@ position = Vector2(21, -88)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("9_06ur4")
-metadata/_custom_type_script = "uid://cih88vv0ljwib"
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot/Attacks/SlamAttackComponent" unique_id=1547408921]
 rotation = 0.99094254
@@ -316,7 +315,6 @@ position = Vector2(21, -88)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("9_06ur4")
-metadata/_custom_type_script = "uid://cih88vv0ljwib"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Attacks/BiteAttack" unique_id=1050842033]
 position = Vector2(-21, 22)
