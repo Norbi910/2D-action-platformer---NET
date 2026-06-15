@@ -1,4 +1,5 @@
 using System;
+using DPlatformer.NET.Scripts.CS.Entities.Components;
 using Godot;
 
 namespace DPlatformer.NET.Scripts.CS.Entities.Player;
@@ -35,6 +36,8 @@ public partial class Player : CharacterBody2D {
 	private Timer respawnTimer;
 	// TODO: 
 	// private PlayerInventory inventory;
+	private HealthComponent healthComponent;
+	private HitBoxComponent hitboxComponent;
 	
 	// Signal
 	[Signal]
@@ -69,13 +72,14 @@ public partial class Player : CharacterBody2D {
 		coyoteTimer = GetNode<Timer>("%CoyoteTimer");
 		jumpBufferTimer = GetNode<Timer>("%JumpBufferTimer");
 		respawnTimer = GetNode<Timer>("%RespawnTimer");
+		hitboxComponent = GetNode<HitBoxComponent>("%HitBoxComponent");
+		healthComponent = GetNode<HealthComponent>("%HealthComponent");
 		
 		animationPlayer.AnimationFinished += OnAnimationFinished;
 		respawnTimer.Timeout += OnRespawnTimerTimeout;
-		//TODO: hitbox.Knockback += OnHitboxKnockback;
-		//TODO: healthComp.HPChanged += OnHPChanged;
-		// REST as well
-		hitSlowTimer.Timeout += OnHitSlowTimerTimeout;
+		hitboxComponent.OnKnockback += OnHitboxKnockback;
+		healthComponent.HealthChanged += OnHPChanged;
+		//TODO: hitSlowTimer.Timeout += OnHitSlowTimerTimeout;
 
 	}
 

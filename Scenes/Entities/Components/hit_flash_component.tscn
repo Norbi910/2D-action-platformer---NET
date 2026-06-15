@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cf4duabfcn6fa"]
 
-[ext_resource type="Script" uid="uid://dhsidn57865q0" path="res://Scripts/GDScript/Entities/Components/hit_flash_component.gd" id="1_i7b4d"]
+[ext_resource type="Script" uid="uid://07uejhmes6up" path="res://Scripts/CS/Entities/Components/HitFlashComponent.cs" id="1_jvurl"]
 
 [sub_resource type="Animation" id="Animation_4u2o6"]
 length = 0.001
@@ -41,16 +41,14 @@ _data = {
 &"quick_flash": SubResource("Animation_5km1q")
 }
 
-[node name="HitFlashComponent" type="Node2D"]
-script = ExtResource("1_i7b4d")
+[node name="HitFlashComponent" type="Node2D" unique_id=1161655567]
+script = ExtResource("1_jvurl")
 
-[node name="FlashTimer" type="Timer" parent="."]
+[node name="FlashTimer" type="Timer" parent="." unique_id=1605410981]
 wait_time = 0.2
 one_shot = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_4u2o6")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1619610788]
+libraries/ = SubResource("AnimationLibrary_4u2o6")
 
 [connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]

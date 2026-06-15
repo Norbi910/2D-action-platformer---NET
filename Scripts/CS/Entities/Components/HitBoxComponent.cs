@@ -7,7 +7,7 @@ public partial class HitBoxComponent : Area2D
 {
 	[Export] public HealthComponent HealthComponent;
 	[Export] public float InvincibilityDuration = 0.5f;
-	//TODO [Export] hitFlashComponent hitFlashComponent
+	[Export] public HitFlashComponent HitFlashComponent;
 	
 	private Timer invincibilityTimer;
 	public override void _Ready() {
@@ -26,17 +26,12 @@ public partial class HitBoxComponent : Area2D
 		float force = Mathf.Max(400, damage * 10);
 		EmitSignalOnKnockback(direction * force);
 		invincibilityTimer.Start(InvincibilityDuration);
-
-		//TODO if (hitFlash != null) {
-		// 	hitFlash.toggleFlashing()
-		// }
+		HitFlashComponent?.ToggleFlash();
 		return true;
 	}
 	
 	private void OnInvincibilityTimerTimeout() {
-		//TODO
-		// if (hitflash == null) return;
-		// hitflash.toggleflashing()
+		HitFlashComponent?.ToggleFlash();
 	}
 
 }
