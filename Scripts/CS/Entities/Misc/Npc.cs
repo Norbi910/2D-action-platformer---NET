@@ -15,7 +15,7 @@ public partial class Npc : CharacterBody2D
 	
 	public override void _Ready()
 	{
-		textBox = GetNode<Label>("$TextBox");
+		textBox = GetNode<Label>("TextBox");
 		textBox.Visible = false;
 		
 		playerData = GD.Load<Inventory>("res://Resources/Inventory/player_inventory.tres");

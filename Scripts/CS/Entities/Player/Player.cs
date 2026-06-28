@@ -19,14 +19,14 @@ public partial class Player : CharacterBody2D {
 	[ExportCategory("Horizontal Movement")]
 	[Export] public float JumpHeight = 128f;
 	[Export] public float JumpTimeToPeak = 0.6f;
-	[Export] public float JumpFallTime = 0.3f;
+	[Export] public float JumpFallTime = 0.43f;
 	private float jumpVelocity;
 	private float jumpGravity;
 	private float fallGravity;
 
 	[Export] public float VariableJumpHeightStrength = 0.4f;
 	[Export] public float FloatStrength = 10f;
-	[Export] public float TerminalVelocity = 100f;
+	[Export] public float TerminalVelocity = 600f;
 	
 	// Imports
 	private Sprite2D sprite;
@@ -58,15 +58,11 @@ public partial class Player : CharacterBody2D {
 	private bool isAttacking = false;
 	private bool isFloating = false;
 
+	private bool isKnockback = false;
 	private bool isAlive = true;
 
 	private Vector2 velocity;
 
-	public override void _EnterTree()
-	{
-		base._EnterTree();
-		Hud.Singleton.RegisterPlayer(this);
-	}
 
 	public override void _Ready() {
 		jumpVelocity = -2f * JumpHeight / JumpTimeToPeak;
@@ -89,7 +85,8 @@ public partial class Player : CharacterBody2D {
 		hitboxComponent.OnKnockback += OnHitboxKnockback;
 		healthComponent.HealthChanged += OnHPChanged;
 		hitSlowTimer.Timeout += OnHitSlowTimerTimeout;
-
+		GetNode<Area2D>("%Pivot/InteractionArea").AreaEntered += OnInteractionAreaEntered;
+		
 	}
 
 	public override void _PhysicsProcess(double delta) {
@@ -113,7 +110,7 @@ public partial class Player : CharacterBody2D {
 		if (Input.IsActionJustPressed("jump")) {
 			jumpBufferTimer.Start();
 		}
-		if (Input.IsActionJustPressed("jump") && state == MovementState.Jump && !IsOnFloor()) {
+		if (Input.IsActionJustReleased("jump") && state == MovementState.Jump && !IsOnFloor()) {
 			velocity.Y *= VariableJumpHeightStrength;
 		}
 		if (Input.IsActionJustPressed("interact")) {
@@ -125,18 +122,25 @@ public partial class Player : CharacterBody2D {
 	}
 
 	private void UpdateMovement(float delta) {
-		// Kiting
-		if (Mathf.Sign(direction) != Mathf.Sign(velocity.X)) {
-			velocity.X = 0;
+		if (!isKnockback) {
+			// Kiting
+            if (Mathf.Sign(direction) != Mathf.Sign(velocity.X)) {
+            	velocity.X = 0;
+            }
+            
+            // Movement
+            if (direction != 0f) {
+            	velocity.X = Mathf.MoveToward(velocity.X, direction * Speed, Acceleration );  //delta??
+            } else {
+            	velocity.X = Mathf.MoveToward(velocity.X, 0, Deacceleration );
+            }
 		}
-		
-		// Movement
-		if (direction != 0f) {
-			velocity.X = Mathf.MoveToward(velocity.X, direction * Speed, Acceleration * delta);  //delta??
-		} else {
-			velocity.X = Mathf.MoveToward(velocity.X, 0, Deacceleration * delta);
+		else {
+			velocity.X = Mathf.MoveToward(velocity.X, 0, Deacceleration);
+			if (Mathf.Abs(velocity.X) < 1f) isKnockback = false;
 		}
-		
+
+
 		// Able to jump if player is on the ground (coyote timer included) or jump buffered
 		if ((IsOnFloor() || !coyoteTimer.IsStopped()) && !jumpBufferTimer.IsStopped()) {
 			state = MovementState.Jump;
@@ -175,7 +179,8 @@ public partial class Player : CharacterBody2D {
 				break;
 			
 			case MovementState.Jump:
-				state = (isFloating)?  MovementState.Float : MovementState.Fall;
+				if (velocity.Y > 0)
+					state = isFloating ? MovementState.Float : MovementState.Fall;
 				break;
 			
 			case MovementState.Fall:
@@ -190,7 +195,7 @@ public partial class Player : CharacterBody2D {
 				break;
 			
 			case MovementState.Float:
-				if (!isFloating && isAttacking) {
+				if (!isFloating || isAttacking) {
 					state = MovementState.Fall;
 				}
 				if (IsOnFloor()) {
@@ -225,8 +230,8 @@ public partial class Player : CharacterBody2D {
 	private void Interact() {
 		Area2D interactionArea = GetNode<Area2D>("%Pivot/InteractionArea");
 		if (!interactionArea.HasOverlappingBodies()) return;
-		Npc npc = (Npc)interactionArea.GetOverlappingBodies()[0];
-		npc.Interact();
+		Npc npc =  interactionArea.GetOverlappingBodies()[0] as Npc;
+		npc?.Interact();
 	}
 
 	public float GetMaxHealth()
@@ -247,9 +252,9 @@ public partial class Player : CharacterBody2D {
 	}
 	
 	private void OnHitboxKnockback(Vector2 force) {
-		velocity = force;
-		velocity.Y /= 1.6f;
+		Velocity = force;
 		state = MovementState.Jump;
+		isKnockback = true;
 	}
 
 	private void OnHPChanged(float hp) {
@@ -276,4 +281,12 @@ public partial class Player : CharacterBody2D {
 	private void OnHitSlowTimerTimeout() {
 		Engine.TimeScale = 1;
 	}
+	private void OnInteractionAreaEntered(Area2D area)
+	{
+		if (!area.IsInGroup("pickup")) return;
+		Star item = area.GetParent<Star>();
+		PlayerInventory.Items.Add(item.ItemResource);
+		item.Pickup();
+	}
+
 }

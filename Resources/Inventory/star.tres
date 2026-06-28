@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://bjsofc1xdvswi"]
 
-[ext_resource type="Script" uid="uid://bbk3r0lmoqc01" path="res://Scripts/GDScript/UI/inventory_item.gd" id="1_xohux"]
+[ext_resource type="Script" uid="uid://b0xo7llg4w0fu" path="res://Scripts/CS/Misc/InventoryItem.cs" id="1_4sem5"]
 [ext_resource type="Texture2D" uid="uid://bj6u8f8rrwvng" path="res://Sprites/InventoryItems/star_icon.png" id="2_fcxl0"]
 
 [resource]
-script = ExtResource("1_xohux")
-name = "star"
-texture = ExtResource("2_fcxl0")
+script = ExtResource("1_4sem5")
+Name = "star"
+Texture = ExtResource("2_fcxl0")
 metadata/_custom_type_script = "uid://bbk3r0lmoqc01"

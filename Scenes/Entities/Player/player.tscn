@@ -545,10 +545,11 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 visible = false
 position = Vector2(0, -15)
+MaxHealth = 100.0
 
-[node name="HitFlashComponent" parent="." unique_id=1897148146 node_paths=PackedStringArray("sprite", "healthComponent") instance=ExtResource("7_85s6f")]
-sprite = NodePath("../Pivot/PlayerSprite")
-healthComponent = NodePath("../HealthComponent")
+[node name="HitFlashComponent" parent="." unique_id=1897148146 node_paths=PackedStringArray("Sprite", "HealthComponent") instance=ExtResource("7_85s6f")]
+Sprite = NodePath("../Pivot/PlayerSprite")
+HealthComponent = NodePath("../HealthComponent")
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1191439490]
 unique_name_in_owner = true
@@ -571,10 +572,13 @@ shape = SubResource("CapsuleShape2D_f1ek2")
 disabled = true
 debug_color = Color(0.9113462, 0.21197182, 0.52477556, 0.41960785)
 
-[node name="HitBoxComponent" parent="Pivot" unique_id=352873461 instance=ExtResource("7_f1ek2")]
+[node name="HitBoxComponent" parent="Pivot" unique_id=352873461 node_paths=PackedStringArray("HealthComponent", "HitFlashComponent") instance=ExtResource("7_f1ek2")]
 unique_name_in_owner = true
 collision_layer = 2
 collision_mask = 0
+HealthComponent = NodePath("../../HealthComponent")
+InvincibilityDuration = 0.7
+HitFlashComponent = NodePath("../../HitFlashComponent")
 
 [node name="Hitbox" type="CollisionShape2D" parent="Pivot/HitBoxComponent" unique_id=783719210]
 position = Vector2(0, 12)

@@ -26,7 +26,6 @@ buses/default_bus_layout="res://Resources/Music/default_bus_layout.tres"
 [autoload]
 
 Bgm="*res://Scenes/UI/bgm.tscn"
-HUD="*uid://x63lcjbcaif2"
 
 [display]
 

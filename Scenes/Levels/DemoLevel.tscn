@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c7qmlwx2rua4s" path="res://Scenes/Misc/star.tscn" id="10_ydaot"]
 [ext_resource type="FontFile" uid="uid://c6lvcqnjf517l" path="res://Sprites/Fonts/MedodicaRegular.otf" id="10_yupnh"]
 [ext_resource type="PackedScene" uid="uid://c0xujnhdedwic" path="res://Scenes/Entities/Enemy/Boss/boss.tscn" id="12_mv8t7"]
+[ext_resource type="PackedScene" uid="uid://x63lcjbcaif2" path="res://Scenes/UI/hud.tscn" id="16_mv8t7"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_bo1nx"]
 tile_data = PackedInt32Array(0, 1310720, 4, 65536, 1310720, 5)
@@ -1149,7 +1150,6 @@ light_mask = 2
 z_index = -10
 
 [node name="Parallax2D3" type="Parallax2D" parent="BackGround" unique_id=1181967405]
-visible = false
 scroll_scale = Vector2(0, 0)
 repeat_size = Vector2(512, 0)
 
@@ -1160,7 +1160,6 @@ region_enabled = true
 region_rect = Rect2(0, -95.15828, 520.5003, 364.1001)
 
 [node name="Parallax2D2" type="Parallax2D" parent="BackGround" unique_id=568909232]
-visible = false
 scale = Vector2(1, 1.27)
 scroll_scale = Vector2(0.25, 0.1)
 scroll_offset = Vector2(0, 110.00001)
@@ -1340,6 +1339,9 @@ position = Vector2(1784, 94)
 [node name="BigAnt" parent="Enemies" unique_id=681989126 instance=ExtResource("7_daumt")]
 position = Vector2(3100, -186)
 scale = Vector2(2, 2)
+Speed = 35.0
+MaxHp = 500.0
+Damage = 40.0
 
 [node name="Ant9" parent="Enemies" unique_id=1904318784 instance=ExtResource("7_daumt")]
 position = Vector2(3470, -273)
@@ -1398,10 +1400,10 @@ shape = SubResource("RectangleShape2D_mv8t7")
 [node name="NPC" parent="." unique_id=1891953703 instance=ExtResource("7_yupnh")]
 position = Vector2(888, -237)
 
-[node name="Star" parent="." unique_id=2142515428 node_paths=PackedStringArray("drop_source") instance=ExtResource("10_ydaot")]
+[node name="Star" parent="." unique_id=2142515428 node_paths=PackedStringArray("DropSource") instance=ExtResource("10_ydaot")]
 visible = false
 position = Vector2(3541, -219)
-drop_source = NodePath("../Enemies/BigAnt")
+DropSource = NodePath("../Enemies/BigAnt")
 
 [node name="Player" parent="." unique_id=1294005457 instance=ExtResource("5_c6ica")]
 position = Vector2(26, -153)
@@ -1438,3 +1440,7 @@ range_item_cull_mask = 3
 shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 1.5
+
+[node name="Hud" parent="." unique_id=1483658589 node_paths=PackedStringArray("Player") instance=ExtResource("16_mv8t7")]
+unique_name_in_owner = true
+Player = NodePath("../Player")

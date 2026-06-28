@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="PlayerData" format=3 uid="uid://bvyijoa5sha6v"]
+[gd_resource type="Resource" format=3 uid="uid://bvyijoa5sha6v"]
 
-[ext_resource type="Script" uid="uid://dt0c04foff4g7" path="res://Scripts/GDScript/UI/inventory.gd" id="3_4t8we"]
+[ext_resource type="Script" uid="uid://b40hlixwxy1nx" path="res://Scripts/CS/Misc/Inventory.cs" id="1_bj8yv"]
 
 [resource]
-script = ExtResource("3_4t8we")
-completed_quests = null
+script = ExtResource("1_bj8yv")
+Items = null
+CompletedQuests = null
 metadata/_custom_type_script = "uid://dt0c04foff4g7"

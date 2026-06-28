@@ -273,15 +273,17 @@ rotation = 1.5707964
 scale = Vector2(1, 1.005)
 shape = SubResource("CapsuleShape2D_okm6x")
 
-[node name="HitFlashComponent" parent="." unique_id=552003246 instance=ExtResource("1_lou7a")]
+[node name="HitFlashComponent" parent="." unique_id=552003246 node_paths=PackedStringArray("Sprite", "HealthComponent") instance=ExtResource("1_lou7a")]
+Sprite = NodePath("../Sprite2D")
+HealthComponent = NodePath("../HealthComponent")
 
 [node name="HealthComponent" parent="." unique_id=1554441793 instance=ExtResource("2_chaky")]
 position = Vector2(0, -16)
 
-[node name="HPBar" parent="HealthComponent" unique_id=497513154 instance=ExtResource("3_c25kj")]
-visible = false
+[node name="HPBar" parent="HealthComponent" unique_id=497513154 node_paths=PackedStringArray("healthComponent") instance=ExtResource("3_c25kj")]
 offset_top = -8.0
 offset_bottom = -8.0
+healthComponent = NodePath("..")
 metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1274542721]
@@ -290,9 +292,11 @@ texture = ExtResource("5_nuoyh")
 hframes = 3
 vframes = 3
 
-[node name="HitBoxComponent" parent="." unique_id=525335282 instance=ExtResource("6_4s38x")]
+[node name="HitBoxComponent" parent="." unique_id=525335282 node_paths=PackedStringArray("HealthComponent", "HitFlashComponent") instance=ExtResource("6_4s38x")]
 collision_layer = 8
 collision_mask = 0
+HealthComponent = NodePath("../HealthComponent")
+HitFlashComponent = NodePath("../HitFlashComponent")
 
 [node name="HitBox" type="CollisionShape2D" parent="HitBoxComponent" unique_id=1184203549]
 position = Vector2(0.5, 0.5)

@@ -5,10 +5,10 @@
 [node name="HitBoxComponent" type="Area2D" unique_id=2097671261]
 script = ExtResource("1_iiqry")
 
-[node name="InvincibiltyTimer" type="Timer" parent="." unique_id=689950276]
+[node name="InvincibilityTimer" type="Timer" parent="." unique_id=689950276]
 unique_name_in_owner = true
-wait_time = 7.105
+wait_time = 0.3
 one_shot = true
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="timeout" from="InvincibiltyTimer" to="." method="_on_invincibilty_timer_timeout"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibilty_timer_timeout"]

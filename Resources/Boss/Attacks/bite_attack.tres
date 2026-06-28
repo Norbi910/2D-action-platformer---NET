@@ -1,10 +1,7 @@
-[gd_resource type="Resource" script_class="Attack" format=3 uid="uid://dajg0yam1uujx"]
+[gd_resource type="Resource" format=3 uid="uid://dajg0yam1uujx"]
 
-[ext_resource type="Script" uid="uid://djlgois0kuta2" path="res://Scripts/GDScript/Entities/Enemy/Boss/attack.gd" id="1_xahd4"]
+[sub_resource type="GDScript" id="GDScript_adpm6"]
 
 [resource]
-script = ExtResource("1_xahd4")
-animation_name = &"bite"
-damage = 60.0
-required_under_player = true
+script = SubResource("GDScript_adpm6")
 metadata/_custom_type_script = "uid://djlgois0kuta2"

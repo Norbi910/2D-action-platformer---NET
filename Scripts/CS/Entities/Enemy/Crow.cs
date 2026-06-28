@@ -14,20 +14,20 @@ public partial class Crow : Enemy
 	
 	private AnimationPlayer animationPlayer;
 	private Sprite2D sprite;
-	private CollisionShape2D collision;
+	private CapsuleShape2D collision;
 	private Timer directionRecalculateTimer;
 
 	public override void _Ready()
 	{
-		animationPlayer = GetNode<AnimationPlayer>("$AnimationPlayer");
-		sprite = GetNode<Sprite2D>("$Sprite2D");
-		collision = GetNode<CollisionShape2D>("$Collision");
-		directionRecalculateTimer = GetNode<Timer>("$DirectionSearchTimer");
+		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+		sprite = GetNode<Sprite2D>("Sprite2D");
+		collision = (CapsuleShape2D)GetNode<CollisionShape2D>("Collision").Shape;
+		directionRecalculateTimer = GetNode<Timer>("DirectionSearchTimer");
 		
-		Area2D playerFinderArea = GetNode<Area2D>("$PlayerFinderArea");
+		Area2D playerFinderArea = GetNode<Area2D>("PlayerFinderArea");
 		playerFinderArea.AreaEntered += OnPlayerFinderAreaEntered;
 		playerFinderArea.AreaExited += OnPlayerFinderAreaExited;
-		GetNode<HealthComponent>($"HealthComponent").HealthChanged += OnHealthComponentHpChanged;
+		GetNode<HealthComponent>("HealthComponent").HealthChanged += OnHealthComponentHpChanged;
 
 	}
 	
@@ -58,7 +58,7 @@ public partial class Crow : Enemy
 	{
 		target = area;
 		direction = (target.GlobalPosition - GlobalPosition).Normalized();
-		((CircleShape2D)collision.Shape).Radius = 16;
+		collision.Radius = 16;
 	}
 
 	private void OnPlayerFinderAreaExited(Area2D area)
@@ -66,7 +66,7 @@ public partial class Crow : Enemy
 		if (area == target)
 		{
 			target = null;
-			((CircleShape2D)collision.Shape).Radius = 10;
+			collision.Radius = 10;
 		}
 	}
 
@@ -88,7 +88,7 @@ public partial class Crow : Enemy
 
 	private void Die() {
 		isAlive = false;
-		EmitSignal(nameof(DeadEventHandler));
+		EmitSignalDead();
 		GetNode("HealthComponent").QueueFree();
 		GetNode("HitBoxComponent").QueueFree();
 		GetNode("AttackComponent").QueueFree();

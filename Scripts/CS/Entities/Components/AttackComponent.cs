@@ -12,11 +12,11 @@ public partial class AttackComponent : Area2D
 	public delegate void DamageDealtEventHandler();
 	
 	public override void _Process(double delta) {
-		if (HasOverlappingAreas()) return;
+		if (!HasOverlappingAreas()) return;
 		foreach (var area in GetOverlappingAreas()) {
 			if (area is not HitBoxComponent) continue;
 			HitBoxComponent hitbox = area as HitBoxComponent;
-			Vector2 knockbackDirection = (area.GlobalPosition - GlobalPosition).Normalized();
+			Vector2 knockbackDirection = new Vector2(Mathf.Sign((area.GlobalPosition - GlobalPosition).X)/4f,-1).Normalized();
 			if (hitbox.Damage(AttackDamage,  knockbackDirection))
 				EmitSignalDamageDealt();
 		}

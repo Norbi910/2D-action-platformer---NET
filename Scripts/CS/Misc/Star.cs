@@ -10,7 +10,7 @@ public partial class Star : Node2D
 	private AnimatedSprite2D animatedSprite2D;
 	private Area2D area2D;
 
-	private static readonly InventoryItem ItemResource =
+	public InventoryItem ItemResource =
 		ResourceLoader.Load<InventoryItem>("res://Resources/Inventory/star.tres");
 
 	public override void _Ready()

@@ -1,11 +1,8 @@
 [gd_resource type="Resource" script_class="Attack" format=3 uid="uid://gcq220mgqsed"]
 
-[ext_resource type="Script" uid="uid://djlgois0kuta2" path="res://Scripts/GDScript/Entities/Enemy/Boss/attack.gd" id="1_1j6q2"]
+[ext_resource type="Script" uid="uid://ci6alyr1et8i2" path="res://Scripts/CS/Entities/Enemy/Boss/Attack.cs" id="1_1jihl"]
 
 [resource]
-script = ExtResource("1_1j6q2")
-animation_name = &"slam"
-damage = 50.0
-required_state = 1
-state_transition = 1
+script = ExtResource("1_1jihl")
+AnimationName = null
 metadata/_custom_type_script = "uid://djlgois0kuta2"

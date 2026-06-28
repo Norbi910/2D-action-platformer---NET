@@ -4,11 +4,11 @@ using Godot;
 
 namespace DPlatformer.NET.Scripts.CS.UI;
 
+[GlobalClass]
 public partial class Hud : CanvasLayer
 {
-	public static Hud Singleton { get; private set; }
-	
-	private float maxHealth;
+	[Export]
+	public Player Player;
 	
 	private HpBar hpBar;
 	private Label deathLabel;
@@ -16,9 +16,13 @@ public partial class Hud : CanvasLayer
 
 	public override void _Ready()
 	{
-		hpBar = GetNode<HpBar>("$Control/HPBar");
-		deathLabel = GetNode<Label>("$DeathLabel");
-		winLabel = GetNode<Label>("$WinLabel");
+		hpBar = GetNode<HpBar>("%HPBar");
+		deathLabel = GetNode<Label>("%DeathLabel");
+		winLabel = GetNode<Label>("%WinLabel");
+		
+		Player.HealthChanged += Update;
+		
+		GetNode<PauseMenu>("PauseMenu").HintsToggle += OnPauseMenuHintsToggle;
 	}
 
 	private static readonly Inventory PlayerData =
@@ -40,21 +44,13 @@ public partial class Hud : CanvasLayer
 
 	public void Update(float hp)
 	{
-		hpBar.Update(hp / maxHealth);
+		if (hpBar == null || deathLabel == null) return;
+		hpBar.Update(hp/Player.GetMaxHealth());
 		deathLabel.Visible = hp == 0;
 	}
 
 	public void OnPauseMenuHintsToggle(bool state)
 	{
-		EmitSignal(SignalName.HintsToggled, state);
+		EmitSignalHintsToggled(state);
 	}
-
-	public void RegisterPlayer(Player player)
-	{
-		player.HealthChanged += Update;
-		maxHealth = player.GetMaxHealth();
-	}
-	
-
-
 }

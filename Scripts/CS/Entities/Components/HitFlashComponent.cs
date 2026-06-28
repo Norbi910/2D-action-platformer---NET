@@ -2,6 +2,7 @@ using Godot;
 
 namespace DPlatformer.NET.Scripts.CS.Entities.Components;
 
+[GlobalClass]
 public partial class HitFlashComponent : Node2D
 {
 
@@ -17,8 +18,8 @@ public partial class HitFlashComponent : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		animationPlayer = GetNode<AnimationPlayer>("$AnimationPlayer");
-		flashTimer = GetNode<Timer>("$FlashTimer");
+		animationPlayer = GetNode<AnimationPlayer>("%AnimationPlayer");
+		flashTimer = GetNode<Timer>("%FlashTimer");
 
 		if (HealthComponent != null)
 			HealthComponent.HealthChanged += Flash;

@@ -23,7 +23,7 @@ public partial class HitBoxComponent : Area2D
 		if (HealthComponent == null || !invincibilityTimer.IsStopped())
 			return false;
 		HealthComponent.Damage(damage);
-		float force = Mathf.Max(400, damage * 10);
+		float force = Mathf.Max(200f, damage * 10f);
 		EmitSignalOnKnockback(direction * force);
 		invincibilityTimer.Start(InvincibilityDuration);
 		HitFlashComponent?.ToggleFlash();

@@ -7,7 +7,7 @@ namespace DPlatformer.NET.Scripts.CS.Entities.Enemy;
 public partial class Ant : Enemy
 {
 	[Export] public float Speed = 20f;
-	[Export] public float MaxHp = 100f;
+	[Export] public float MaxHp = 50f;
 	[Export] public float Damage = 20f;
 
 	private int dir = 1;  
@@ -33,13 +33,15 @@ public partial class Ant : Enemy
 		attackComponent = GetNode<AttackComponent>("%AttackComponent");
 		hitBoxComponent = GetNode<HitBoxComponent>("%HitBoxComponent");
 		
-		healthComponent.MaxHealth = MaxHp;
-		attackComponent.AttackDamage =  Damage;
+		healthComponent.SetMaxHealth(MaxHp);
+		attackComponent.AttackDamage = Damage;
 		healthComponent.HealthChanged += OnHealthChanged;
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (!isAlive) return;
+		
 		Vector2 velocity = Velocity;
 
 		if (rayCastAhead.IsColliding() || !rayCastDown.IsColliding()) {
@@ -59,7 +61,7 @@ public partial class Ant : Enemy
 	private void OnHealthChanged(float hp)
 	{
 		if (hp <= 0) {
-			EmitSignal(nameof(DeadEventHandler));
+			EmitSignalDead();
 			isAlive = false;
 			healthComponent.QueueFree();
 			hitBoxComponent.QueueFree();

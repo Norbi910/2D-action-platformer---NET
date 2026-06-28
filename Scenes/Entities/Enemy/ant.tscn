@@ -32,7 +32,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("pivot/Sprite2D:texture")
+tracks/0/path = NodePath("Pivot/Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -44,7 +44,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("pivot/Sprite2D:offset")
+tracks/1/path = NodePath("Pivot/Sprite2D:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -56,7 +56,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("pivot/Sprite2D:flip_h")
+tracks/2/path = NodePath("Pivot/Sprite2D:flip_h")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -68,7 +68,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("pivot/Sprite2D:hframes")
+tracks/3/path = NodePath("Pivot/Sprite2D:hframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -80,7 +80,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("pivot/Sprite2D:frame")
+tracks/4/path = NodePath("Pivot/Sprite2D:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -97,7 +97,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("pivot/Sprite2D:texture")
+tracks/0/path = NodePath("Pivot/Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -109,7 +109,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("pivot/Sprite2D:offset")
+tracks/1/path = NodePath("Pivot/Sprite2D:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -121,7 +121,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("pivot/Sprite2D:hframes")
+tracks/2/path = NodePath("Pivot/Sprite2D:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -133,7 +133,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("pivot/Sprite2D:frame")
+tracks/3/path = NodePath("Pivot/Sprite2D:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -165,7 +165,7 @@ step = 0.125
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("pivot/Sprite2D:texture")
+tracks/0/path = NodePath("Pivot/Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -177,7 +177,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("pivot/Sprite2D:offset")
+tracks/1/path = NodePath("Pivot/Sprite2D:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -189,7 +189,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("pivot/Sprite2D:flip_h")
+tracks/2/path = NodePath("Pivot/Sprite2D:flip_h")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -201,7 +201,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("pivot/Sprite2D:hframes")
+tracks/3/path = NodePath("Pivot/Sprite2D:hframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -213,7 +213,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("pivot/Sprite2D:frame")
+tracks/4/path = NodePath("Pivot/Sprite2D:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -238,25 +238,28 @@ floor_constant_speed = true
 floor_max_angle = 1.2322024
 floor_snap_length = 2.0
 script = ExtResource("1_iplwl")
+MaxHp = 40.0
 
 [node name="AntCollision" type="CollisionShape2D" parent="." unique_id=632290424]
 rotation = 1.5707964
 scale = Vector2(1, 1.005)
 shape = SubResource("CapsuleShape2D_ae3vd")
 
-[node name="HitFlashComponent" parent="." unique_id=505591346 instance=ExtResource("2_ox3j0")]
+[node name="HitFlashComponent" parent="." unique_id=505591346 node_paths=PackedStringArray("Sprite", "HealthComponent") instance=ExtResource("2_ox3j0")]
+Sprite = NodePath("../Pivot/Sprite2D")
+HealthComponent = NodePath("../HealthComponent")
 
 [node name="HealthComponent" parent="." unique_id=1207987447 instance=ExtResource("3_wtaqj")]
 unique_name_in_owner = true
 position = Vector2(0, -16)
 
-[node name="HPBar" parent="HealthComponent" unique_id=192685518 instance=ExtResource("3_2itxg")]
-visible = false
+[node name="HPBar" parent="HealthComponent" unique_id=192685518 node_paths=PackedStringArray("healthComponent") instance=ExtResource("3_2itxg")]
+healthComponent = NodePath("..")
 
-[node name="pivot" type="Node2D" parent="." unique_id=1503459976]
+[node name="Pivot" type="Node2D" parent="." unique_id=1503459976]
 unique_name_in_owner = true
 
-[node name="Sprite2D" type="Sprite2D" parent="pivot" unique_id=1728393896]
+[node name="Sprite2D" type="Sprite2D" parent="Pivot" unique_id=1728393896]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_ox3j0")
 texture = ExtResource("1_3vc7g")
@@ -264,33 +267,35 @@ offset = Vector2(3, -5)
 flip_h = true
 hframes = 8
 
-[node name="RayCastDown" type="RayCast2D" parent="pivot" unique_id=1311653705]
+[node name="RayCastDown" type="RayCast2D" parent="Pivot" unique_id=1311653705]
 unique_name_in_owner = true
 position = Vector2(4, 0)
 target_position = Vector2(0, 21)
 
-[node name="RayCastAhead" type="RayCast2D" parent="pivot" unique_id=1802905885]
+[node name="RayCastAhead" type="RayCast2D" parent="Pivot" unique_id=1802905885]
 unique_name_in_owner = true
 position = Vector2(0, 3)
 target_position = Vector2(17, 0)
 
-[node name="HitBoxComponent" parent="pivot" unique_id=1635533889 instance=ExtResource("4_yntpf")]
+[node name="HitBoxComponent" parent="Pivot" unique_id=1635533889 node_paths=PackedStringArray("HealthComponent", "HitFlashComponent") instance=ExtResource("4_yntpf")]
 unique_name_in_owner = true
 collision_layer = 8
 collision_mask = 0
+HealthComponent = NodePath("../../HealthComponent")
+HitFlashComponent = NodePath("../../HitFlashComponent")
 
-[node name="HitBox" type="CollisionShape2D" parent="pivot/HitBoxComponent" unique_id=1328327900]
+[node name="HitBox" type="CollisionShape2D" parent="Pivot/HitBoxComponent" unique_id=1328327900]
 visible = false
 position = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_p3gn3")
 debug_color = Color(0.25649512, 0.6281854, 0.2717998, 0.41960785)
 
-[node name="AttackComponent" parent="pivot" unique_id=161664938 instance=ExtResource("5_yntpf")]
+[node name="AttackComponent" parent="Pivot" unique_id=161664938 instance=ExtResource("5_yntpf")]
 unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 2
 
-[node name="AttackCollision" type="CollisionShape2D" parent="pivot/AttackComponent" unique_id=484652463]
+[node name="AttackCollision" type="CollisionShape2D" parent="Pivot/AttackComponent" unique_id=484652463]
 visible = false
 position = Vector2(0.5, 0.5)
 rotation = 1.5707964

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://mca7y2rl04ft" path="res://Scenes/Entities/Components/hit_box_component.tscn" id="3_gbfcn"]
 [ext_resource type="PackedScene" uid="uid://cdnmaw550r223" path="res://Scenes/UI/hp_bar.tscn" id="4_gbfcn"]
 [ext_resource type="Texture2D" uid="uid://coagglfkuhbns" path="res://Sprites/Entities/Enemies/Boss/611927-walter-hammer-set-4-tlg-09.webp" id="6_e30ix"]
-[ext_resource type="Script" uid="uid://cih88vv0ljwib" path="res://Scripts/GDScript/Entities/Components/attack_component.gd" id="9_06ur4"]
+[ext_resource type="Script" uid="uid://dd6hduj7hm1iu" path="res://Scripts/CS/Entities/Components/AttackComponent.cs" id="6_nldh5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u6nay"]
 radius = 23.0
@@ -259,10 +259,12 @@ script = ExtResource("1_nldh5")
 shape = SubResource("CapsuleShape2D_u6nay")
 
 [node name="HealthComponent" parent="." unique_id=2101488015 instance=ExtResource("2_mci1o")]
+MaxHealth = 500.0
 
-[node name="HPBar" parent="." unique_id=1111443554 instance=ExtResource("4_gbfcn")]
+[node name="HPBar" parent="." unique_id=1111443554 node_paths=PackedStringArray("healthComponent") instance=ExtResource("4_gbfcn")]
 offset_top = -47.0
 offset_bottom = -47.0
+healthComponent = NodePath("../HealthComponent")
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1598850250]
 unique_name_in_owner = true
@@ -276,10 +278,11 @@ scale = Vector2(1.2, 1.2)
 texture = ExtResource("2_e30ix")
 hframes = 4
 
-[node name="HitBoxComponent" parent="Pivot" unique_id=947251289 instance=ExtResource("3_gbfcn")]
+[node name="HitBoxComponent" parent="Pivot" unique_id=947251289 node_paths=PackedStringArray("HealthComponent") instance=ExtResource("3_gbfcn")]
 position = Vector2(0.39941406, 0.9342499)
 collision_layer = 8
 collision_mask = 0
+HealthComponent = NodePath("../../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/HitBoxComponent" unique_id=546269523]
 shape = SubResource("CapsuleShape2D_8qf24")
@@ -292,7 +295,7 @@ visible = false
 position = Vector2(21, -88)
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("9_06ur4")
+script = ExtResource("6_nldh5")
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot/Attacks/SlamAttackComponent" unique_id=1547408921]
 rotation = 0.99094254
@@ -311,7 +314,7 @@ visible = false
 position = Vector2(21, -88)
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("9_06ur4")
+script = ExtResource("6_nldh5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Attacks/BiteAttack" unique_id=1050842033]
 position = Vector2(-21, 22)

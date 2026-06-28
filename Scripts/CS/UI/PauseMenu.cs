@@ -7,17 +7,32 @@ public partial class PauseMenu : Control
 {
 	[Signal] public delegate void HintsToggleEventHandler(bool state);
 
-	private MarginContainer settingsMenu = null!;
-	private MarginContainer baseMenu = null!;
-	private HSlider volumeSlider = null!;
-	private BaseButton hintButton = null!;
+	private MarginContainer settingsMenu;
+	private MarginContainer baseMenu;
+	
+	private Button resumeButton;
+	private Button settingsButton;
+	private Button quitButton;
+	private HSlider volumeSlider;
+	private CheckButton hintButton;
 
 	public override void _Ready()
 	{
 		settingsMenu = GetNode<MarginContainer>("%SettingsMenu");
 		baseMenu = GetNode<MarginContainer>("%BaseMenu");
+		
+		resumeButton = GetNode<Button>("%ResumeButton");
+		resumeButton.Pressed += OnResumeButtonPressed;
+		settingsButton = GetNode<Button>("%SettingsButton");
+		settingsButton.Pressed += OnSettingsButtonPressed;
+		quitButton = GetNode<Button>("%QuitButton");
+		quitButton.Pressed += OnQuitButtonPressed;
 		volumeSlider = GetNode<HSlider>("%VolumeSlider");
-		hintButton = GetNode<BaseButton>("%HintButton");
+		volumeSlider.ValueChanged += OnHSliderValueChanged;
+		hintButton = GetNode<CheckButton>("%HintButton");
+		hintButton.Pressed += OnHintButtonPressed;
+		
+		
 	}
 
 	public override void _Process(double delta)
@@ -63,6 +78,6 @@ public partial class PauseMenu : Control
 		AudioServer.SetBusMute(0, Math.Abs(value - volumeSlider.MinValue) < 0.01f);
 	}
 
-	//private void OnHintButtonPressed() =>
-		//EmitSignal(global::PauseMenu.SignalName.HintsToggle, hintButton.ButtonPressed);
+	private void OnHintButtonPressed() =>
+		EmitSignalHintsToggle(hintButton.ButtonPressed);
 }

@@ -8,7 +8,8 @@ public partial class DemoLevel : Node2D
 
 	public override void _Ready()
 	{
-		labels = GetNode<Control>("$Labels");
+		labels = GetNode<Control>("Labels");
+		GetNode<Hud>("%Hud").HintsToggled += HudHintsSwitch;
 	}
 
 	private void HudHintsSwitch(bool state)

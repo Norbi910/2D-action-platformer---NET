@@ -24,28 +24,20 @@ offset_right = 19.0
 offset_bottom = 15.0
 color = Color(1, 0.64705884, 0.73333335, 0.2509804)
 
-[node name="BaseMenu" type="MarginContainer" parent="." unique_id=574115086]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="VFlowContainer" type="HFlowContainer" parent="." unique_id=667292394]
+layout_mode = 0
 offset_left = 181.5
-offset_top = 115.0
-offset_right = -181.5
-offset_bottom = -115.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_top = 71.0
+offset_right = 298.5
+offset_bottom = 199.0
 
-[node name="VFlowContainer" type="HFlowContainer" parent="BaseMenu" unique_id=667292394]
-layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="BaseMenu/VFlowContainer" unique_id=953663124]
+[node name="ColorRect" type="ColorRect" parent="VFlowContainer" unique_id=953663124]
 custom_minimum_size = Vector2(117, 40)
 layout_mode = 2
 color = Color(0.5521021, 0.17160293, 0.42320028, 1)
 
-[node name="ResumeButton" type="Button" parent="BaseMenu/VFlowContainer/ColorRect" unique_id=521075526]
+[node name="ResumeButton" type="Button" parent="VFlowContainer/ColorRect" unique_id=521075526]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -57,12 +49,19 @@ theme_override_font_sizes/font_size = 32
 text = "Resume"
 flat = true
 
-[node name="ColorRect2" type="ColorRect" parent="BaseMenu/VFlowContainer" unique_id=2117002157]
+[node name="BaseMenu" type="MarginContainer" parent="VFlowContainer" unique_id=574115086]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="FlowContainer" type="FlowContainer" parent="VFlowContainer/BaseMenu" unique_id=1352373226]
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="VFlowContainer/BaseMenu/FlowContainer" unique_id=2117002157]
 custom_minimum_size = Vector2(117, 40)
 layout_mode = 2
 color = Color(0.5521021, 0.17160293, 0.42320028, 1)
 
-[node name="SettingsButton" type="Button" parent="BaseMenu/VFlowContainer/ColorRect2" unique_id=362624895]
+[node name="SettingsButton" type="Button" parent="VFlowContainer/BaseMenu/FlowContainer/ColorRect2" unique_id=362624895]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -76,12 +75,12 @@ text = "Settings
 "
 flat = true
 
-[node name="ColorRect3" type="ColorRect" parent="BaseMenu/VFlowContainer" unique_id=495285931]
+[node name="ColorRect3" type="ColorRect" parent="VFlowContainer/BaseMenu/FlowContainer" unique_id=495285931]
 custom_minimum_size = Vector2(117, 40)
 layout_mode = 2
 color = Color(0.5521021, 0.17160293, 0.42320028, 1)
 
-[node name="QuitButton" type="Button" parent="BaseMenu/VFlowContainer/ColorRect3" unique_id=1880501402]
+[node name="QuitButton" type="Button" parent="VFlowContainer/BaseMenu/FlowContainer/ColorRect3" unique_id=1880501402]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -95,45 +94,20 @@ text = "Quit
 "
 flat = true
 
-[node name="SettingsMenu" type="MarginContainer" parent="." unique_id=275692446]
+[node name="SettingsMenu" type="MarginContainer" parent="VFlowContainer" unique_id=275692446]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 181.5
-offset_top = 115.0
-offset_right = -181.5
-offset_bottom = -115.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VFlowContainer" type="HFlowContainer" parent="SettingsMenu" unique_id=279976941]
+visible = false
 layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="SettingsMenu/VFlowContainer" unique_id=165978003]
+[node name="FlowContainer" type="FlowContainer" parent="VFlowContainer/SettingsMenu" unique_id=1929798832]
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="VFlowContainer/SettingsMenu/FlowContainer" unique_id=950437418]
 custom_minimum_size = Vector2(117, 40)
 layout_mode = 2
 color = Color(0.5521021, 0.17160293, 0.42320028, 1)
 
-[node name="ResumeButton" type="Button" parent="SettingsMenu/VFlowContainer/ColorRect" unique_id=971590884]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_r2i2h")
-theme_override_font_sizes/font_size = 32
-text = "Resume"
-flat = true
-
-[node name="ColorRect2" type="ColorRect" parent="SettingsMenu/VFlowContainer" unique_id=950437418]
-custom_minimum_size = Vector2(117, 40)
-layout_mode = 2
-color = Color(0.5521021, 0.17160293, 0.42320028, 1)
-
-[node name="VolumeSlider" type="HSlider" parent="SettingsMenu/VFlowContainer/ColorRect2" unique_id=10353236]
+[node name="VolumeSlider" type="HSlider" parent="VFlowContainer/SettingsMenu/FlowContainer/ColorRect2" unique_id=10353236]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -145,12 +119,12 @@ tick_count = 10
 ticks_on_borders = true
 ticks_position = 2
 
-[node name="ColorRect3" type="ColorRect" parent="SettingsMenu/VFlowContainer" unique_id=1949528021]
+[node name="ColorRect3" type="ColorRect" parent="VFlowContainer/SettingsMenu/FlowContainer" unique_id=1949528021]
 custom_minimum_size = Vector2(117, 40)
 layout_mode = 2
 color = Color(0.5521021, 0.17160293, 0.42320028, 1)
 
-[node name="HintButton" type="CheckButton" parent="SettingsMenu/VFlowContainer/ColorRect3" unique_id=423207841]
+[node name="HintButton" type="CheckButton" parent="VFlowContainer/SettingsMenu/FlowContainer/ColorRect3" unique_id=423207841]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 0.5
@@ -161,9 +135,8 @@ theme_override_font_sizes/font_size = 32
 button_pressed = true
 text = "Hints"
 
-[connection signal="pressed" from="BaseMenu/VFlowContainer/ColorRect/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="BaseMenu/VFlowContainer/ColorRect2/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="BaseMenu/VFlowContainer/ColorRect3/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="SettingsMenu/VFlowContainer/ColorRect/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="value_changed" from="SettingsMenu/VFlowContainer/ColorRect2/VolumeSlider" to="." method="_on_h_slider_value_changed"]
-[connection signal="pressed" from="SettingsMenu/VFlowContainer/ColorRect3/HintButton" to="." method="_on_hint_button_pressed"]
+[connection signal="pressed" from="VFlowContainer/ColorRect/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="VFlowContainer/BaseMenu/FlowContainer/ColorRect2/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="VFlowContainer/BaseMenu/FlowContainer/ColorRect3/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="value_changed" from="VFlowContainer/SettingsMenu/FlowContainer/ColorRect2/VolumeSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="VFlowContainer/SettingsMenu/FlowContainer/ColorRect3/HintButton" to="." method="_on_hint_button_pressed"]
