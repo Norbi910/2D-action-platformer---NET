@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://cdnmaw550r223"]
 
-[ext_resource type="Script" uid="uid://2l83trm74toe" path="res://Scripts/GDScript/UI/hp_bar.gd" id="1_7yw3h"]
+[ext_resource type="Script" uid="uid://dwj31ftrd2pkf" path="res://Scripts/CS/UI/HpBar.cs" id="1_5hhwy"]
 
-[node name="HPBar" type="Control"]
+[node name="HPBar" type="Control" unique_id=800117056]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_7yw3h")
+script = ExtResource("1_5hhwy")
 
-[node name="bg" type="ColorRect" parent="."]
+[node name="bg" type="ColorRect" parent="." unique_id=1106078854]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -22,7 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.54509807)
 
-[node name="hp" type="ColorRect" parent="."]
+[node name="hp" type="ColorRect" parent="." unique_id=644024272]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c7qmlwx2rua4s"]
 
-[ext_resource type="Script" uid="uid://cckj27uo7j62q" path="res://Scripts/GDScript/Misc/star.gd" id="1_3vu41"]
 [ext_resource type="Texture2D" uid="uid://cntubvsqr2gpo" path="res://Sprites/Pickups/star.png" id="1_d0spr"]
+[ext_resource type="Script" uid="uid://dsh2lveb01nsw" path="res://Scripts/CS/Misc/Star.cs" id="1_pvdcs"]
 [ext_resource type="Texture2D" uid="uid://jrl80pn5bxlf" path="res://Sprites/Effects/item-feedback.png" id="3_fwpdb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3vu41"]
@@ -97,22 +97,22 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_wl3pd"]
 radius = 9.0
 
-[node name="Star" type="Node2D" groups=["pickup"]]
-script = ExtResource("1_3vu41")
+[node name="Star" type="Node2D" unique_id=1052826730 groups=["pickup"]]
+script = ExtResource("1_pvdcs")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=338442511]
 sprite_frames = SubResource("SpriteFrames_quovc")
 animation = &"pickup"
 autoplay = "default"
 frame = 4
 frame_progress = 1.0
 
-[node name="Area2D" type="Area2D" parent="." groups=["pickup"]]
+[node name="Area2D" type="Area2D" parent="." unique_id=1362526393 groups=["pickup"]]
 collision_layer = 16
 collision_mask = 0
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1215994323]
 shape = SubResource("CircleShape2D_wl3pd")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

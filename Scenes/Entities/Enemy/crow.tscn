@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bs1jsgcfbqxsd"]
 
-[ext_resource type="Script" uid="uid://dc262svgjrkrm" path="res://Scripts/GDScript/Entities/Enemy/crow.gd" id="1_c25kj"]
 [ext_resource type="PackedScene" uid="uid://cf4duabfcn6fa" path="res://Scenes/Entities/Components/hit_flash_component.tscn" id="1_lou7a"]
+[ext_resource type="Script" uid="uid://b4y7q6ryba6e6" path="res://Scripts/CS/Entities/Enemy/Crow.cs" id="1_wr7gk"]
 [ext_resource type="PackedScene" uid="uid://bml8o3fl7yfw0" path="res://Scenes/Entities/Components/health_component.tscn" id="2_chaky"]
 [ext_resource type="PackedScene" uid="uid://cdnmaw550r223" path="res://Scenes/UI/hp_bar.tscn" id="3_c25kj"]
 [ext_resource type="Shader" uid="uid://7i1wxshtsd8b" path="res://Resources/Shaders/hit_flash.tres" id="4_6y3jp"]
@@ -266,21 +266,17 @@ radius = 300.0
 [node name="Crow" type="CharacterBody2D" unique_id=978249869]
 collision_layer = 8
 collision_mask = 9
-script = ExtResource("1_c25kj")
+script = ExtResource("1_wr7gk")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=725901849]
 rotation = 1.5707964
 scale = Vector2(1, 1.005)
 shape = SubResource("CapsuleShape2D_okm6x")
 
-[node name="HitFlashComponent" parent="." unique_id=552003246 node_paths=PackedStringArray("sprite", "healthComponent") instance=ExtResource("1_lou7a")]
-sprite = NodePath("../Sprite2D")
-healthComponent = NodePath("../HealthComponent")
+[node name="HitFlashComponent" parent="." unique_id=552003246 instance=ExtResource("1_lou7a")]
 
-[node name="HealthComponent" parent="." unique_id=1554441793 node_paths=PackedStringArray("hp_bar") instance=ExtResource("2_chaky")]
+[node name="HealthComponent" parent="." unique_id=1554441793 instance=ExtResource("2_chaky")]
 position = Vector2(0, -16)
-MAX_HEALTH = 15.0
-hp_bar = NodePath("HPBar")
 
 [node name="HPBar" parent="HealthComponent" unique_id=497513154 instance=ExtResource("3_c25kj")]
 visible = false
@@ -294,11 +290,9 @@ texture = ExtResource("5_nuoyh")
 hframes = 3
 vframes = 3
 
-[node name="HitBoxComponent" parent="." unique_id=525335282 node_paths=PackedStringArray("health_component") instance=ExtResource("6_4s38x")]
+[node name="HitBoxComponent" parent="." unique_id=525335282 instance=ExtResource("6_4s38x")]
 collision_layer = 8
 collision_mask = 0
-health_component = NodePath("../HealthComponent")
-invincibility_time = 0.2
 
 [node name="HitBox" type="CollisionShape2D" parent="HitBoxComponent" unique_id=1184203549]
 position = Vector2(0.5, 0.5)
@@ -308,7 +302,6 @@ debug_color = Color(0.25649512, 0.6281854, 0.2717998, 0.41960785)
 [node name="AttackComponent" parent="." unique_id=699261722 instance=ExtResource("7_mpace")]
 collision_layer = 0
 collision_mask = 2
-ATTACK_DAMAGE = 10.0
 
 [node name="AttackCollision" type="CollisionShape2D" parent="AttackComponent" unique_id=1448938087]
 rotation = 1.5707964
@@ -335,6 +328,5 @@ visible = false
 wait_time = 0.4
 one_shot = true
 
-[connection signal="hp_changed" from="HealthComponent" to="." method="_on_health_component_hp_changed"]
 [connection signal="area_entered" from="PlayerFinderArea" to="." method="_on_player_finder_area_entered"]
 [connection signal="area_exited" from="PlayerFinderArea" to="." method="_on_player_finder_area_exited"]

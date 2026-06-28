@@ -10,8 +10,8 @@ extends Enemy
 
 var direction: int = 1
 @export var is_alive: bool = true
-@onready var ray_cast_ahead: RayCast2D = $%RayCastAhead
-@onready var ray_cast_down: RayCast2D = $%RayCastDown
+@onready var ray_cast_ahead: RayCast2D = %RayCastAhead
+@onready var ray_cast_down: RayCast2D = %RayCastDown
 @onready var sprite: Sprite2D = $pivot/Sprite2D
 @onready var pivot: Node2D = $pivot
 @onready var animation_player: AnimationPlayer = $AnimationPlayer

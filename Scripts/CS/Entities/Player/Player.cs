@@ -1,5 +1,8 @@
 using System;
 using DPlatformer.NET.Scripts.CS.Entities.Components;
+using DPlatformer.NET.Scripts.CS.Entities.Misc;
+using DPlatformer.NET.Scripts.CS.Misc;
+using DPlatformer.NET.Scripts.CS.UI;
 using Godot;
 
 namespace DPlatformer.NET.Scripts.CS.Entities.Player;
@@ -34,8 +37,8 @@ public partial class Player : CharacterBody2D {
 	private Timer coyoteTimer;
 	private Timer jumpBufferTimer;
 	private Timer respawnTimer;
-	// TODO: 
-	// private PlayerInventory inventory;
+	private static readonly Inventory PlayerInventory =
+		ResourceLoader.Load<Inventory>("uid://bvyijoa5sha6v");
 	private HealthComponent healthComponent;
 	private HitBoxComponent hitboxComponent;
 	
@@ -59,6 +62,12 @@ public partial class Player : CharacterBody2D {
 
 	private Vector2 velocity;
 
+	public override void _EnterTree()
+	{
+		base._EnterTree();
+		Hud.Singleton.RegisterPlayer(this);
+	}
+
 	public override void _Ready() {
 		jumpVelocity = -2f * JumpHeight / JumpTimeToPeak;
 		jumpGravity = 2 * JumpHeight / JumpTimeToPeak / JumpTimeToPeak;
@@ -79,7 +88,7 @@ public partial class Player : CharacterBody2D {
 		respawnTimer.Timeout += OnRespawnTimerTimeout;
 		hitboxComponent.OnKnockback += OnHitboxKnockback;
 		healthComponent.HealthChanged += OnHPChanged;
-		//TODO: hitSlowTimer.Timeout += OnHitSlowTimerTimeout;
+		hitSlowTimer.Timeout += OnHitSlowTimerTimeout;
 
 	}
 
@@ -216,13 +225,13 @@ public partial class Player : CharacterBody2D {
 	private void Interact() {
 		Area2D interactionArea = GetNode<Area2D>("%Pivot/InteractionArea");
 		if (!interactionArea.HasOverlappingBodies()) return;
-		//TODO: NPC npc = interactionArea.GetOverlappingBodies()[0];
-		//npc.Interact()
+		Npc npc = (Npc)interactionArea.GetOverlappingBodies()[0];
+		npc.Interact();
 	}
 
-	private float GetMaxHealth()
+	public float GetMaxHealth()
 	{
-		return -1;
+		return healthComponent.MaxHealth;
 	}
 
 	private void OnAnimationFinished(StringName animName) {
@@ -251,13 +260,14 @@ public partial class Player : CharacterBody2D {
 	}
 	private void Die() {
 		isAlive = false;
-		//TODO: PlayerInventory.Reset()
+		PlayerInventory.Reset();
 		animationPlayer.Play("death");
 		sprite.Visible = false;
 		GD.Print("YOU DIED!");
 		Engine.TimeScale = 0.5f;
 		respawnTimer.Start();
 	}
+
 
 	private void OnDamageDealtToEnemy() {
 		Engine.TimeScale = 0.5f;

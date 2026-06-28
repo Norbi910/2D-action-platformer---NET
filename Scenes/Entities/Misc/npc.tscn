@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c5adkl5ce2slt"]
 
 [ext_resource type="Texture2D" uid="uid://dhl2onbee0i2l" path="res://Sprites/Entities/NPCs/sunny-bunny-idle.png" id="1_acqhf"]
-[ext_resource type="Script" uid="uid://gk4ti8qnn06h" path="res://Scripts/GDScript/Entities/Misc/npc.gd" id="1_xxsvc"]
+[ext_resource type="Script" uid="uid://byhat2fam3klk" path="res://Scripts/CS/Entities/Misc/Npc.cs" id="1_t2n17"]
 [ext_resource type="FontFile" uid="uid://c6lvcqnjf517l" path="res://Sprites/Fonts/MedodicaRegular.otf" id="3_g6unj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xxsvc"]
@@ -43,22 +43,22 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_2xkex"]
 radius = 20.024984
 
-[node name="NPC" type="CharacterBody2D"]
+[node name="NPC" type="CharacterBody2D" unique_id=1529686574]
 collision_layer = 4
-script = ExtResource("1_xxsvc")
+script = ExtResource("1_t2n17")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=60620129]
 sprite_frames = SubResource("SpriteFrames_6atyd")
 autoplay = "default"
 frame_progress = 0.37945244
 flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2089150473]
 visible = false
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_2xkex")
 
-[node name="TextBox" type="Label" parent="."]
+[node name="TextBox" type="Label" parent="." unique_id=1368628371]
 z_index = 5
 offset_left = -79.0
 offset_top = -38.0

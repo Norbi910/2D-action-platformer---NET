@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://0y7b0t310ya6"]
 
-[ext_resource type="Script" uid="uid://cnastewmr22ut" path="res://Scripts/GDScript/Misc/demo_level.gd" id="1_daumt"]
+[ext_resource type="Script" uid="uid://c1ipxfm4eptqg" path="res://Scripts/CS/UI/DemoLevel.cs" id="1_mlijf"]
 [ext_resource type="Texture2D" uid="uid://bmtekvskkcf5i" path="res://Sprites/BackGround/sky.png" id="1_y27js"]
 [ext_resource type="Texture2D" uid="uid://dxorqnwdr6kwv" path="res://Sprites/BackGround/clouds.png" id="2_yupnh"]
 [ext_resource type="Texture2D" uid="uid://div67s55nkb60" path="res://Sprites/BackGround/trees.png" id="3_ydaot"]
@@ -15,12 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://c7qmlwx2rua4s" path="res://Scenes/Misc/star.tscn" id="10_ydaot"]
 [ext_resource type="FontFile" uid="uid://c6lvcqnjf517l" path="res://Sprites/Fonts/MedodicaRegular.otf" id="10_yupnh"]
 [ext_resource type="PackedScene" uid="uid://c0xujnhdedwic" path="res://Scenes/Entities/Enemy/Boss/boss.tscn" id="12_mv8t7"]
-[ext_resource type="Script" uid="uid://djlgois0kuta2" path="res://Scripts/GDScript/Entities/Enemy/Boss/attack.gd" id="12_uha3m"]
-[ext_resource type="Resource" uid="uid://dcp6thd2q0crk" path="res://Resources/Boss/Attacks/uproot.tres" id="13_har8n"]
-[ext_resource type="Resource" uid="uid://gcq220mgqsed" path="res://Resources/Boss/Attacks/slam_Attack.tres" id="14_jxryy"]
-[ext_resource type="Resource" uid="uid://dcmmki52158lx" path="res://Resources/Boss/Attacks/burrow.tres" id="15_1fxyu"]
-[ext_resource type="Resource" uid="uid://dajg0yam1uujx" path="res://Resources/Boss/Attacks/bite_attack.tres" id="16_bujq5"]
-[ext_resource type="Script" uid="uid://v1cqrhhvx3ff" path="res://Scripts/GDScript/Entities/Enemy/Boss/boss_resource.gd" id="17_cyn6n"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_bo1nx"]
 tile_data = PackedInt32Array(0, 1310720, 4, 65536, 1310720, 5)
@@ -1144,19 +1138,11 @@ pattern_2 = SubResource("TileMapPattern_ydaot")
 pattern_3 = SubResource("TileMapPattern_qjc0w")
 pattern_4 = SubResource("TileMapPattern_y2mi2")
 
-[sub_resource type="Resource" id="Resource_y26fe"]
-script = ExtResource("17_cyn6n")
-attacks = Array[ExtResource("12_uha3m")]([ExtResource("13_har8n"), ExtResource("14_jxryy"), ExtResource("15_1fxyu"), ExtResource("16_bujq5")])
-cooldown = 2.0
-cooldown_deviation = 0.5
-moveable_states = Array[int]([0])
-metadata/_custom_type_script = "uid://v1cqrhhvx3ff"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mv8t7"]
 size = Vector2(642, 250)
 
 [node name="OnlabDemoLevel" type="Node2D" unique_id=1833050363]
-script = ExtResource("1_daumt")
+script = ExtResource("1_mlijf")
 
 [node name="BackGround" type="Node2D" parent="." unique_id=298220123]
 light_mask = 2
@@ -1354,9 +1340,6 @@ position = Vector2(1784, 94)
 [node name="BigAnt" parent="Enemies" unique_id=681989126 instance=ExtResource("7_daumt")]
 position = Vector2(3100, -186)
 scale = Vector2(2, 2)
-speed = 80.0
-max_hp = 100.0
-damage = 40.0
 
 [node name="Ant9" parent="Enemies" unique_id=1904318784 instance=ExtResource("7_daumt")]
 position = Vector2(3470, -273)
@@ -1400,10 +1383,8 @@ position = Vector2(3642, -417)
 [node name="Crow9" parent="Enemies" unique_id=1097598063 instance=ExtResource("8_ydaot")]
 position = Vector2(3005, -465)
 
-[node name="Boss" parent="Enemies" unique_id=573936638 node_paths=PackedStringArray("activator_area") instance=ExtResource("12_mv8t7")]
+[node name="Boss" parent="Enemies" unique_id=573936638 instance=ExtResource("12_mv8t7")]
 position = Vector2(-991, -29)
-activator_area = NodePath("../../Area2D")
-stats = SubResource("Resource_y26fe")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=96256975]
 position = Vector2(-535, -65)
@@ -1428,7 +1409,6 @@ position = Vector2(26, -153)
 [node name="Camera" parent="Player" unique_id=1266117759 instance=ExtResource("7_qjc0w")]
 position = Vector2(1, 2)
 limit_smoothed = true
-max_offset = 100
 
 [node name="Node2D2" type="Node2D" parent="." unique_id=1527165849]
 visible = false

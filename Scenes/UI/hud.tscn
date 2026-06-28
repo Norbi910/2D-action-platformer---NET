@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://x63lcjbcaif2"]
 
-[ext_resource type="Script" uid="uid://ffnyjusxg1j6" path="res://Scripts/GDScript/UI/hud.gd" id="1_e0onf"]
+[ext_resource type="Script" uid="uid://d2qmnw6iwqmyc" path="res://Scripts/CS/UI/Hud.cs" id="1_vsu76"]
 [ext_resource type="PackedScene" uid="uid://6pbne607b68l" path="res://Scenes/UI/inventory_UI.tscn" id="2_6fbih"]
 [ext_resource type="FontFile" uid="uid://c6lvcqnjf517l" path="res://Sprites/Fonts/MedodicaRegular.otf" id="2_fccik"]
 [ext_resource type="PackedScene" uid="uid://cdnmaw550r223" path="res://Scenes/UI/hp_bar.tscn" id="3_bjfho"]
 [ext_resource type="PackedScene" uid="uid://6oay2ktv6ylx" path="res://Scenes/UI/pause_menu.tscn" id="5_vsu76"]
 
 [node name="HUD" type="CanvasLayer" unique_id=1483658589]
-script = ExtResource("1_e0onf")
+script = ExtResource("1_vsu76")
 
 [node name="Control" type="Control" parent="." unique_id=725082220]
 layout_mode = 3
@@ -97,5 +97,3 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PauseMenu" parent="." unique_id=1276499994 instance=ExtResource("5_vsu76")]
 visible = false
-
-[connection signal="hints_toggle" from="PauseMenu" to="." method="_on_pause_menu_hints_toggle"]

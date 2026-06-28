@@ -1,7 +1,7 @@
 extends Resource
 class_name PlayerData
 
-@export var items: Array[InventoryItem]
+@export var items: Array[InventoryI				tem]
 @export var completed_quests: Array[StringName]
 
 func reset():
