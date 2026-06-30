@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cf4duabfcn6fa" path="res://Scenes/Entities/Components/hit_flash_component.tscn" id="1_lou7a"]
 [ext_resource type="Script" uid="uid://b4y7q6ryba6e6" path="res://Scripts/CS/Entities/Enemy/Crow.cs" id="1_wr7gk"]
 [ext_resource type="PackedScene" uid="uid://bml8o3fl7yfw0" path="res://Scenes/Entities/Components/health_component.tscn" id="2_chaky"]
+[ext_resource type="Shader" uid="uid://ckp8niir5rfnw" path="res://Resources/Shaders/otherShader.gdshader" id="3_0f5wq"]
 [ext_resource type="PackedScene" uid="uid://cdnmaw550r223" path="res://Scenes/UI/hp_bar.tscn" id="3_c25kj"]
 [ext_resource type="Shader" uid="uid://7i1wxshtsd8b" path="res://Resources/Shaders/hit_flash.tres" id="4_6y3jp"]
 [ext_resource type="Texture2D" uid="uid://dtk8fcdwol0ed" path="res://Sprites/Entities/Enemies/crow-all.png" id="5_nuoyh"]
@@ -12,6 +13,12 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_okm6x"]
 height = 32.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_51fd1"]
+shader = ExtResource("3_0f5wq")
+shader_parameter/dye = false
+shader_parameter/dyeColor = Color(1, 1, 1, 1)
+shader_parameter/dyeRate = 0.6
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ppp0m"]
 resource_local_to_scene = true
@@ -273,9 +280,10 @@ rotation = 1.5707964
 scale = Vector2(1, 1.005)
 shape = SubResource("CapsuleShape2D_okm6x")
 
-[node name="HitFlashComponent" parent="." unique_id=552003246 node_paths=PackedStringArray("Sprite", "HealthComponent") instance=ExtResource("1_lou7a")]
+[node name="HitFlashComponent" parent="." unique_id=552003246 node_paths=PackedStringArray("Sprite", "HitBoxComponent") instance=ExtResource("1_lou7a")]
+material = SubResource("ShaderMaterial_51fd1")
 Sprite = NodePath("../Sprite2D")
-HealthComponent = NodePath("../HealthComponent")
+HitBoxComponent = NodePath("../HitBoxComponent")
 
 [node name="HealthComponent" parent="." unique_id=1554441793 instance=ExtResource("2_chaky")]
 position = Vector2(0, -16)
@@ -292,11 +300,10 @@ texture = ExtResource("5_nuoyh")
 hframes = 3
 vframes = 3
 
-[node name="HitBoxComponent" parent="." unique_id=525335282 node_paths=PackedStringArray("HealthComponent", "HitFlashComponent") instance=ExtResource("6_4s38x")]
+[node name="HitBoxComponent" parent="." unique_id=525335282 node_paths=PackedStringArray("HealthComponent") instance=ExtResource("6_4s38x")]
 collision_layer = 8
 collision_mask = 0
 HealthComponent = NodePath("../HealthComponent")
-HitFlashComponent = NodePath("../HitFlashComponent")
 
 [node name="HitBox" type="CollisionShape2D" parent="HitBoxComponent" unique_id=1184203549]
 position = Vector2(0.5, 0.5)

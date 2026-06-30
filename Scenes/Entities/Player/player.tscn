@@ -9,8 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://d0bbjhesy6lg4" path="res://Sprites/Effects/enemy-death.png" id="6_14y0q"]
 [ext_resource type="PackedScene" uid="uid://cf4duabfcn6fa" path="res://Scenes/Entities/Components/hit_flash_component.tscn" id="7_85s6f"]
 [ext_resource type="PackedScene" uid="uid://mca7y2rl04ft" path="res://Scenes/Entities/Components/hit_box_component.tscn" id="7_f1ek2"]
-[ext_resource type="Shader" uid="uid://dfbcw0y4ieh7m" path="res://Resources/Shaders/better_flash.gdshader" id="8_85s6f"]
 [ext_resource type="PackedScene" uid="uid://bb8nlyevsjr62" path="res://Scenes/Entities/Components/attack_component.tscn" id="8_tx1dd"]
+[ext_resource type="Shader" uid="uid://ckp8niir5rfnw" path="res://Resources/Shaders/otherShader.gdshader" id="9_0yfgq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fkybt"]
 radius = 9.0
@@ -461,9 +461,10 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_14y0q"]
 resource_local_to_scene = true
-shader = ExtResource("8_85s6f")
-shader_parameter/color_parameter = Color(1, 1, 1, 1)
-shader_parameter/enabled = false
+shader = ExtResource("9_0yfgq")
+shader_parameter/dye = false
+shader_parameter/dyeColor = Color(1, 1, 1, 1)
+shader_parameter/dyeRate = 0.6
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8erm5"]
 radius = 6.0
@@ -547,9 +548,10 @@ visible = false
 position = Vector2(0, -15)
 MaxHealth = 100.0
 
-[node name="HitFlashComponent" parent="." unique_id=1897148146 node_paths=PackedStringArray("Sprite", "HealthComponent") instance=ExtResource("7_85s6f")]
+[node name="HitFlashComponent" parent="." unique_id=1897148146 node_paths=PackedStringArray("Sprite", "HitBoxComponent") instance=ExtResource("7_85s6f")]
 Sprite = NodePath("../Pivot/PlayerSprite")
-HealthComponent = NodePath("../HealthComponent")
+HitBoxComponent = NodePath("../Pivot/HitBoxComponent")
+Strobe = true
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1191439490]
 unique_name_in_owner = true
@@ -572,13 +574,12 @@ shape = SubResource("CapsuleShape2D_f1ek2")
 disabled = true
 debug_color = Color(0.9113462, 0.21197182, 0.52477556, 0.41960785)
 
-[node name="HitBoxComponent" parent="Pivot" unique_id=352873461 node_paths=PackedStringArray("HealthComponent", "HitFlashComponent") instance=ExtResource("7_f1ek2")]
+[node name="HitBoxComponent" parent="Pivot" unique_id=352873461 node_paths=PackedStringArray("HealthComponent") instance=ExtResource("7_f1ek2")]
 unique_name_in_owner = true
 collision_layer = 2
 collision_mask = 0
 HealthComponent = NodePath("../../HealthComponent")
 InvincibilityDuration = 0.7
-HitFlashComponent = NodePath("../../HitFlashComponent")
 
 [node name="Hitbox" type="CollisionShape2D" parent="Pivot/HitBoxComponent" unique_id=783719210]
 position = Vector2(0, 12)

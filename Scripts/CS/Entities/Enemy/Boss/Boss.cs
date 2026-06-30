@@ -41,6 +41,7 @@ public partial class Boss : CharacterBody2D
 
         if (ActivatorArea != null)
             ActivatorArea.AreaEntered += OnActivatorAreaEntered;
+        else active = true;
     }
 
     public override void _PhysicsProcess(double delta)

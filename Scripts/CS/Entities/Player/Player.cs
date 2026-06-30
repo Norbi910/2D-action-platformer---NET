@@ -270,7 +270,7 @@ public partial class Player : CharacterBody2D {
 		sprite.Visible = false;
 		GD.Print("YOU DIED!");
 		Engine.TimeScale = 0.5f;
-		respawnTimer.Start();
+		//respawnTimer.Start();
 	}
 
 

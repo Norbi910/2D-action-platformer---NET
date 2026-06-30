@@ -8,13 +8,14 @@
 [node name="Hud" type="CanvasLayer" unique_id=1483658589]
 script = ExtResource("1_vsu76")
 
-[node name="Control" type="Control" parent="." unique_id=725082220]
+[node name="Bar" type="Control" parent="." unique_id=725082220]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="Control" unique_id=1399812325]
+[node name="Label" type="Label" parent="Bar" unique_id=1399812325]
 unique_name_in_owner = true
 layout_mode = 0
 offset_right = 40.0
@@ -26,7 +27,7 @@ theme_override_fonts/font = ExtResource("2_fccik")
 theme_override_font_sizes/font_size = 32
 text = "HP:"
 
-[node name="HPBar" parent="Control" unique_id=383536878 instance=ExtResource("3_bjfho")]
+[node name="HPBar" parent="Bar" unique_id=383536878 instance=ExtResource("3_bjfho")]
 unique_name_in_owner = true
 layout_mode = 1
 offset_left = 103.0
@@ -35,20 +36,23 @@ offset_right = 103.0
 offset_bottom = 13.0
 scale = Vector2(4.745744, 5.7073193)
 
-[node name="DeathLabel" type="Label" parent="." unique_id=1309962802]
+[node name="DeathMenu" type="Control" parent="." unique_id=231218053]
 unique_name_in_owner = true
 visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -175.0
-offset_top = -50.0
-offset_right = 175.0
-offset_bottom = 50.000046
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 3
+anchors_preset = 0
+offset_left = 65.0
+offset_top = 85.0
+offset_right = 105.0
+offset_bottom = 125.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DeathMenu" unique_id=89017230]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DeathLabel" type="Label" parent="DeathMenu/VBoxContainer" unique_id=1309962802]
+layout_mode = 2
 theme_override_colors/font_color = Color(0.6901961, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7019608)
 theme_override_constants/shadow_offset_x = 2
@@ -59,7 +63,26 @@ theme_override_fonts/font = ExtResource("2_fccik")
 theme_override_font_sizes/font_size = 100
 text = "YOU DIED!"
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="DeathMenu/VBoxContainer" unique_id=674032541]
+custom_minimum_size = Vector2(125, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.17254902, 0.5921569, 0.42352942, 1)
+
+[node name="RestartButton" type="Button" parent="DeathMenu/VBoxContainer/ColorRect3" unique_id=1692264845]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_fccik")
+theme_override_font_sizes/font_size = 32
+text = "Restart
+"
+flat = true
 
 [node name="WinLabel" type="Label" parent="." unique_id=1292066534]
 unique_name_in_owner = true

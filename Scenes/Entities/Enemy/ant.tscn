@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://cf4duabfcn6fa" path="res://Scenes/Entities/Components/hit_flash_component.tscn" id="2_ox3j0"]
 [ext_resource type="PackedScene" uid="uid://cdnmaw550r223" path="res://Scenes/UI/hp_bar.tscn" id="3_2itxg"]
 [ext_resource type="PackedScene" uid="uid://bml8o3fl7yfw0" path="res://Scenes/Entities/Components/health_component.tscn" id="3_wtaqj"]
-[ext_resource type="Shader" uid="uid://7i1wxshtsd8b" path="res://Resources/Shaders/hit_flash.tres" id="4_jbatd"]
 [ext_resource type="PackedScene" uid="uid://mca7y2rl04ft" path="res://Scenes/Entities/Components/hit_box_component.tscn" id="4_yntpf"]
 [ext_resource type="Texture2D" uid="uid://d0bbjhesy6lg4" path="res://Sprites/Effects/enemy-death.png" id="5_8l72l"]
+[ext_resource type="Shader" uid="uid://ckp8niir5rfnw" path="res://Resources/Shaders/otherShader.gdshader" id="5_iplwl"]
 [ext_resource type="PackedScene" uid="uid://bb8nlyevsjr62" path="res://Scenes/Entities/Components/attack_component.tscn" id="5_yntpf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ae3vd"]
@@ -16,9 +16,10 @@ height = 27.860697
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ox3j0"]
 resource_local_to_scene = true
-shader = ExtResource("4_jbatd")
-shader_parameter/enabled = false
-shader_parameter/ColorParameter = Color(1, 1, 1, 1)
+shader = ExtResource("5_iplwl")
+shader_parameter/dye = false
+shader_parameter/dyeColor = Color(1, 1, 1, 1)
+shader_parameter/dyeRate = 0.6
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p3gn3"]
 radius = 16.0
@@ -245,9 +246,9 @@ rotation = 1.5707964
 scale = Vector2(1, 1.005)
 shape = SubResource("CapsuleShape2D_ae3vd")
 
-[node name="HitFlashComponent" parent="." unique_id=505591346 node_paths=PackedStringArray("Sprite", "HealthComponent") instance=ExtResource("2_ox3j0")]
+[node name="HitFlashComponent" parent="." unique_id=505591346 node_paths=PackedStringArray("Sprite", "HitBoxComponent") instance=ExtResource("2_ox3j0")]
 Sprite = NodePath("../Pivot/Sprite2D")
-HealthComponent = NodePath("../HealthComponent")
+HitBoxComponent = NodePath("../Pivot/HitBoxComponent")
 
 [node name="HealthComponent" parent="." unique_id=1207987447 instance=ExtResource("3_wtaqj")]
 unique_name_in_owner = true
@@ -277,12 +278,11 @@ unique_name_in_owner = true
 position = Vector2(0, 3)
 target_position = Vector2(17, 0)
 
-[node name="HitBoxComponent" parent="Pivot" unique_id=1635533889 node_paths=PackedStringArray("HealthComponent", "HitFlashComponent") instance=ExtResource("4_yntpf")]
+[node name="HitBoxComponent" parent="Pivot" unique_id=1635533889 node_paths=PackedStringArray("HealthComponent") instance=ExtResource("4_yntpf")]
 unique_name_in_owner = true
 collision_layer = 8
 collision_mask = 0
 HealthComponent = NodePath("../../HealthComponent")
-HitFlashComponent = NodePath("../../HitFlashComponent")
 
 [node name="HitBox" type="CollisionShape2D" parent="Pivot/HitBoxComponent" unique_id=1328327900]
 visible = false

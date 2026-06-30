@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BossResource" format=3 uid="uid://ccojf2blj2084"]
+
+[ext_resource type="Script" uid="uid://gebfpfeht3ec" path="res://Scripts/CS/Entities/Enemy/Boss/BossResource.cs" id="1_fvgls"]
+
+[resource]
+script = ExtResource("1_fvgls")
+Attacks = null
+MoveableStates = null
+metadata/_custom_type_script = "uid://gebfpfeht3ec"

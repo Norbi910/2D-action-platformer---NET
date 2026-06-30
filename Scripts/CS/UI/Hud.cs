@@ -11,13 +11,18 @@ public partial class Hud : CanvasLayer
 	public Player Player;
 	
 	private HpBar hpBar;
-	private Label deathLabel;
+	private Control bar;
+	private Control deathMenu;
+	private Button restartButton;
 	private Label winLabel;
 
 	public override void _Ready()
 	{
 		hpBar = GetNode<HpBar>("%HPBar");
-		deathLabel = GetNode<Label>("%DeathLabel");
+		restartButton = GetNode<Button>("%RestartButton");
+		restartButton.Pressed += OnRestartButtonPressed;
+		deathMenu = GetNode<Control>("%DeathMenu");
+		bar = GetNode<Control>("%Bar");
 		winLabel = GetNode<Label>("%WinLabel");
 		
 		Player.HealthChanged += Update;
@@ -44,13 +49,23 @@ public partial class Hud : CanvasLayer
 
 	public void Update(float hp)
 	{
-		if (hpBar == null || deathLabel == null) return;
+		if (hpBar == null || deathMenu == null) return;
 		hpBar.Update(hp/Player.GetMaxHealth());
-		deathLabel.Visible = hp == 0;
+
+		if (hp <= 0) {
+			deathMenu.Visible = true;
+			bar.Visible = false;
+		}
+		
 	}
 
 	public void OnPauseMenuHintsToggle(bool state)
 	{
 		EmitSignalHintsToggled(state);
+	}
+
+	public void OnRestartButtonPressed()
+	{
+		GetTree().ReloadCurrentScene();
 	}
 }

@@ -7,63 +7,50 @@ public partial class HitFlashComponent : Node2D
 {
 
 	[Export] public Sprite2D Sprite;
-	[Export] public HealthComponent HealthComponent;
-	[Export] public bool Enabled = false;
+	[Export] public HitBoxComponent HitBoxComponent;
 	[Export] public bool Strobe = false;
-	[Export] public Color FlashColor = Color.FromString("WHITE",new  Color(1,1,1,1));
 	
-	private AnimationPlayer animationPlayer;
+	private Timer durationTimer;
 	private Timer flashTimer;
+	private Timer strobeTimer;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		animationPlayer = GetNode<AnimationPlayer>("%AnimationPlayer");
+		durationTimer = GetNode<Timer>("%DurationTimer");
+		durationTimer.Timeout += OnDurationTimerTimeout;
 		flashTimer = GetNode<Timer>("%FlashTimer");
+		flashTimer.Timeout += OnFlashTimerTimeout;
+		strobeTimer = GetNode<Timer>("%StrobeTimer");
+		strobeTimer.Timeout += OnStrobeTimerTimeout;
 
-		if (HealthComponent != null)
-			HealthComponent.HealthChanged += Flash;
+		HitBoxComponent.OnHit += StartFlashing;
+
 	}
 
-	public override void _Process(double delta)
+	private void StartFlashing(float duration)
 	{
-		Sprite?.SetInstanceShaderParameter("enabled", Enabled);
-		Sprite?.SetInstanceShaderParameter("color_parameter", FlashColor);
+		durationTimer.Start(duration);
+		if (Strobe) strobeTimer.Start();
+		((ShaderMaterial)Sprite.Material).SetShaderParameter("dye", true);
+		flashTimer.Start(Mathf.Max(duration/4, 0.2));
 	}
 	
-	public void Flash(float _dmg)
+	private void OnStrobeTimerTimeout()
 	{
-		Enabled = true;
-		flashTimer.Start();
+		Sprite.Visible = !Sprite.Visible;
 	}
-
-	public void ToggleFlash()
+	private void OnDurationTimerTimeout()
 	{
-		Strobe = !Strobe;
-		if (!flashTimer.Paused) return;
-		if (!Strobe)
-		{
-			animationPlayer.Stop();
-			FlashColor = Color.FromString("WHITE", FlashColor);
-			Enabled = false;
-			return;
-		}
-
-		Enabled = true;
-		FlashColor = Color.FromString("RED", FlashColor);
-		animationPlayer.Play("quick_flash");
-
+		Sprite.Visible = true;
+		strobeTimer.Stop();
+		((ShaderMaterial)Sprite.Material).SetShaderParameter("dye", false);
 	}
 
 	private void OnFlashTimerTimeout()
 	{
-		Enabled = false;
-		if (!Strobe && !animationPlayer.IsPlaying())
-		{
-			Enabled = true;
-			FlashColor = Color.FromString("LIGHT_YELLOW", FlashColor);
-			animationPlayer.Play("quick_flash");
-		}
+		((ShaderMaterial)Sprite.Material).SetShaderParameter("dye", false);
 	}
+
 
 }
